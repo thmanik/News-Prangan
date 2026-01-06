@@ -37,8 +37,8 @@ const VerticalImageCard = ({ news }) => {
                        text-xl xms:text-2xl xls:text-3xl sm:text-4xl md:text-5xl 
                        font-extrabold 
                        leading-tight 
-                       text-gray-900 
-                       hover:text-red-700 transition-colors"
+                       text-secondary
+                       hover:underline transition-colors"
           >
             {news.title}
           </h2>

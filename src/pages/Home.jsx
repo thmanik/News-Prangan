@@ -1,8 +1,10 @@
+// src/pages/Home.jsx
 
 import React, { useState, useEffect } from 'react';
 import VerticalImageCard from '../components/VerticalImageCard';
-
-
+import CoverImageCard from '../components/CoverImageCard';
+import TextOnlyCard from '../components/TextOnlyCard';
+import SideImageCard from '../components/SideImageCard';
 
 
 export default function Home() {
@@ -23,11 +25,11 @@ export default function Home() {
         }
         
         const data = await response.json();
-        setNewsData(data);
+        setNewsData(Array.isArray(data) ? data : []); 
         setError(null);
       } catch (e) {
         console.error("Could not fetch data:", e);
-        setError("দুঃখিত, নিউজ ডেটা লোড করা যায়নি।");
+        setError("Sorry! Data is not Fetched"); 
       } finally {
         setLoading(false); 
       }
@@ -36,36 +38,80 @@ export default function Home() {
     fetchNewsData();
   }, []);
 
- 
+  
   if (loading) {
     return (
         <div className="flex justify-center items-center h-48">
-            <p className="text-xl font-medium text-blue-600">খবর লোড হচ্ছে...</p>
+            <p className="text-xl font-medium text-secondary">loading....</p>
         </div>
     );
   }
 
   if (error) {
     return (
-        <div className="text-center p-8 bg-red-100 border border-red-400 text-red-700 rounded mx-auto my-8 max-w-lg">
-            <p className="font-bold">Error!</p>
+        <div className="text-center p-8 bg-primary border border-accent text-secondary rounded mx-auto my-8 max-w-lg">
+            <p className="font-bold text-lg">Error!</p>
             <p>{error}</p>
         </div>
     );
   }
 
-  const firstFeaturedArticle = newsData.find(item => item.isFeatured);
+  const verticalImageArticles = newsData.filter(item => item.cardType === "verticalImageCard");
+  const firstVerticalImageCard = verticalImageArticles[0];
+
+  const coverImageCards = newsData.filter(item => item.cardType === "coverImageCard");
   
-  if (!firstFeaturedArticle) {
-    return <div className="text-center p-8">No featured news articles found.</div>;
-  }
-  
+  const textOnlyCards = newsData.filter(item => item.cardType === "textOnlyCard");
+
+  const sideImageCards = newsData.filter(item => item.cardType === "sideImageCard");
+
+
   return (
-    <div className="p-4 sm:p-8">
-        <h1 className="text-4xl font-bold bg-primary mb-8">Home Page - Hero Story</h1>
-        {
-            newsData.map((data)=><VerticalImageCard news={data} /> )
-        }
+    <div className="container mx-auto px-4 py-8">
+      
+      <div className="grid grid-cols-12 gap-8">
+        
+        <div className="col-span-12 md:col-span-3">
+          <div className="space-y-6">
+            <h3 className="text-xl font-bold text-secondary border-b border-accent pb-2 mb-4">Cover Stories</h3>
+            {
+              coverImageCards.map(item => (
+                <CoverImageCard key={item.id} news={item} />
+              ))
+            }
+          </div>
+        </div>
+
+        <div className="col-span-12 md:col-span-6">
+            
+            {firstVerticalImageCard && (
+                <div className="mb-8 border-b border-accent pb-8">
+                    <VerticalImageCard news={firstVerticalImageCard} /> 
+                </div>
+            )}
+            
+            <div className="divide-y divide-accent">
+                {
+                    textOnlyCards.map(item => (
+                        <TextOnlyCard key={item.id} news={item} />
+                    ))
+                }
+            </div>
+        </div>
+        
+        <div className="col-span-12 md:col-span-3">
+            <div className="space-y-4">
+                <h3 className="text-xl font-bold text-secondary border-b border-accent pb-2 mb-4">Trending</h3>
+                {
+                    sideImageCards.map(item => (
+                        <SideImageCard key={item.id} news={item} />
+                    ))
+                }
+            </div>
+        </div>
+
+      </div>
+      
     </div>
   );
 }
