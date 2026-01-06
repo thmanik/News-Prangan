@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const TextOnlyCard = ({ news }) => {
   const getNewsPath = (news) => {
-    return `/article/${news.id}`; 
+    return `/newsDetails/${news.id}`; 
   };
 
   return (
@@ -13,7 +13,7 @@ const TextOnlyCard = ({ news }) => {
         
         <Link to={getNewsPath(news)} className="block focus:outline-none group">
         
-          <h2 className="text-lg sm:text-xl md:text-lg font-extrabold leading-snug mb-2 text-secondary group-hover:text-accent group-hover:underline transition-all">
+          <h2 className="text-lg sm:text-xl md:text-lg font-bold leading-snug mb-2 text-secondary hover:underline transition-all">
             {news.title}
           </h2>
 

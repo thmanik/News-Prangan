@@ -1,69 +1,75 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const VerticalImageCard = ({ news }) => {
+  
+  const getNewsPath = (news) => {
+    return `/newsDetails/${news.id}`; 
+  };
+  
+  const articlePath = getNewsPath(news);
+
   return (
-    <div 
-      className="bg-primary rounded-lg my-4  hover:shadow-xl transition-shadow duration-500 overflow-hidden cursor-pointer w-full"
+    <Link 
+      to={articlePath} 
+      className="bg-primary my-4 hover:shadow-sm transition-shadow duration-500 overflow-hidden w-full block group"
     >
       
-      <a href={`/news/${news.id}`}>
-        <img 
-          className="w-full h-56 xms:h-64 sm:h-72 md:h-80 object-cover" 
-          src={news.image} 
-          alt={news.title} 
-        />
-      </a>
-      
-      
-      <div className="p-4 xms:p-5 sm:p-6 md:p-8">
-        
-      
-        <div className="flex items-center mb-2">
-          {news.isFeatured && (
-             <span className="flex items-center text-red-600 font-bold mr-3 text-sm">
-                <span className="mr-1 text-lg">🔴</span>
-                LIVE
-             </span>
-          )}
-          <span className="text-xs font-semibold uppercase text-gray-500">
-            {news.category}
-          </span>
+        <div>
+            <img 
+              className="w-full h-56 xms:h-64 sm:h-72 md:h-80 object-cover" 
+              src={news.image} 
+              alt={news.title} 
+            />
         </div>
-    
-        <a href={`/news/${news.id}`}>
-          <h2 
-            className="mb-3 
-                       text-xl xms:text-2xl xls:text-3xl sm:text-4xl md:text-5xl 
-                       font-extrabold 
-                       leading-tight 
-                       text-secondary
-                       hover:underline transition-colors"
-          >
-            {news.title}
-          </h2>
-        </a>
         
-        <p 
-          className="mb-4 
-                     text-base xms:text-lg sm:text-xl 
-                     font-normal 
-                     text-gray-700 
-                     border-b border-gray-200 pb-4"
-        >
-          {news.shortDescription}
-        </p>
-        
-        <div className="flex justify-between items-center text-xs text-gray-500 mt-2">
-            <span>
-                Published:{news.publishedDate}
-            </span>
-            <div className="flex gap-2">
-               {news.subCategory}
+        <div className="p-4 xms:p-5 sm:p-6 md:p-8">
+            
+            <div className="flex items-center mb-2">
+              {news.isFeatured && (
+                  <span className="flex items-center text-red-600 font-bold mr-3 text-sm">
+                    <span className="mr-1 text-lg">🔴</span>
+                    LIVE
+                  </span>
+              )}
+              <span className="text-xs font-semibold uppercase text-accent">
+                {news.category}
+              </span>
+            </div>
+          
+            <h2 
+              className="mb-3 
+                        text-md xms:text-xl xls:text-2xl sm:text-3xl md:text-4xl 
+                        font-extrabold 
+                        leading-tight 
+                        text-secondary
+                        group-hover:underline  transition-colors"
+            >
+              {news.title}
+            </h2>
+            
+            <p 
+              className="mb-4 
+                        text-base xms:text-lg sm:text-xl 
+                        font-normal 
+                        text-accent
+                        border-b border-accent/50 pb-4"
+            >
+              {news.shortDescription}
+            </p>
+            
+            <div className="flex justify-between items-center text-xs text-accent mt-2">
+                <span>
+                    Published: {news.publishedDate}
+                </span>
+                <div className="flex gap-2">
+                    {Array.isArray(news.subCategory) ? news.subCategory.join(' | ') : news.subCategory}
+                </div>
             </div>
         </div>
-      </div>
-    </div>
+      
+    </Link>
   );
 };
 

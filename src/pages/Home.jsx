@@ -1,4 +1,3 @@
-// src/pages/Home.jsx
 
 import React, { useState, useEffect } from 'react';
 import VerticalImageCard from '../components/VerticalImageCard';
@@ -25,7 +24,7 @@ export default function Home() {
         }
         
         const data = await response.json();
-        setNewsData(Array.isArray(data) ? data : []); 
+        setNewsData( data ); 
         setError(null);
       } catch (e) {
         console.error("Could not fetch data:", e);
@@ -67,7 +66,7 @@ export default function Home() {
 
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-4">
       
       <div className="grid grid-cols-12 gap-8">
         

@@ -7,6 +7,7 @@ import ErrorPage from "./Error";
 
 import Root from "./root";
 import Home from "./pages/Home";
+import NewsDetailsPage from "./pages/NewsDetailsPage";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
         index: true, 
         element: <Home />,
       },
+      {
+        path:"/newsDetails/:id",
+        element:<NewsDetailsPage/>
+      }
     ],
   },
 ]);

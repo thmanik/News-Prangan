@@ -4,12 +4,15 @@ import { Link } from 'react-router-dom';
 
 const CoverImageCard = ({ news }) => {
   const getNewsPath = (news) => {
-    return `/article/${news.id}`; 
+    return `/newsDetails/${news.id}`; 
   };
+  const articlePath = getNewsPath(news);
 
   return (
-    <div className="max-w-xs  sm:max-w-sm md:max-w-md my-4 mx-auto  border-b border-accent overflow-hidden bg-primary hover:shadow-xl transition-shadow duration-300">
-      <div to={getNewsPath(news)} className="block focus:outline-none group">
+    <Link 
+      to={articlePath} 
+      className="max-w-xs sm:max-w-sm md:max-w-md my-4 mx-auto  overflow-hidden bg-primary hover:shadow-sm  transition-shadow duration-500 block group"
+    >
         
         <div className="relative overflow-hidden h-48 sm:h-56 md:h-64">
           <img
@@ -21,26 +24,25 @@ const CoverImageCard = ({ news }) => {
 
         <div className="p-4 md:p-5">
           
-          <Link to={getNewsPath(news)} className="text-md sm:text-2xl font-extrabold leading-tight mb-2 text-secondary hover:underline transition-colors">
+          <h2 className="text-xl sm:text-2xl font-extrabold leading-tight mb-2 text-secondary group-hover:underline transition-colors">
             {news.title}
-          </Link>
+          </h2>
 
           <p className="text-accent text-sm sm:text-base mb-3 leading-relaxed">
             {news.shortDescription}
           </p>
 
-          <div className="flex items-center space-x-2 pt-2 border-t border-gray-100">
+          <div className="flex items-center  space-x-2 pt-2 border-t border-accent/50">
             <span className="text-sm font-medium text-accent">
               {news.publishedDate}
             </span>
             <span className="text-accent">|</span>
             <span className="text-sm font-medium text-accent">
-              {Array.isArray(news.subCategory) ? news.subCategory[0] : news.category} 
+              {news.category} 
             </span>
           </div>
         </div>
-      </div>
-    </div>
+    </Link>
   );
 };
 
