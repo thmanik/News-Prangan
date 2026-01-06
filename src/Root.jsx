@@ -1,13 +1,12 @@
 import { Outlet } from "react-router-dom";
+import Header from "./components/layout/Header";
 
 export default function Root() {
   return (
-    <div className="grid grid-cols-12 min-h-screen">
+    <div >
       
-      <div className="col-span-3 bg-gray-200 p-4">
-        Navbar
-      </div>
-      <div className="col-span-9 p-4">
+      <Header/>
+      <div className=" p-4">
        <Outlet/>
       </div>
 
