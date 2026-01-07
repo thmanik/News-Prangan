@@ -112,7 +112,7 @@
     "title": "Cybersecurity Threats in 2026",
     "shortDescription": "Organizations face evolving cybersecurity threats (ransomware, state-sponsored attacks), requiring investments in advanced threat detection.",
     "fullDescription": "The digital landscape faces evolving cybersecurity threats, ranging from sophisticated ransomware attacks to state-sponsored espionage. Organizations are investing heavily in advanced threat detection, encryption technologies, and employee training to protect sensitive data. Experts emphasize the importance of multi-factor authentication, regular security audits, and robust incident response plans. The rise of remote work and cloud computing has expanded the attack surface, requiring more dynamic security strategies. Governments and industry leaders are collaborating to share threat intelligence and establish standardized security protocols. Overall, cybersecurity remains a top priority, driving innovation in protective technologies and demanding a proactive, adaptive approach to defense.",
-    "image": "/images/cybersecurity.jpg",
+    "image": "/images/cybersecurity.png",
     "category": "Technology",
     "subCategory": "AI",
     "cardType": "sideImageCard",
