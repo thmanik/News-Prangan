@@ -5,6 +5,7 @@ import CoverImageCard from '../components/CoverImageCard';
 import TextOnlyCard from '../components/TextOnlyCard';
 import SideImageCard from '../components/SideImageCard';
 import PageTitle from '../components/PageTitle';
+import CategorySection from '../components/CategorySection';
 
 
 export default function Home() {
@@ -59,11 +60,17 @@ export default function Home() {
   const verticalImageCard = newsData.filter(item => item.cardType === "verticalImageCard");
   const firstVerticalImageCard = verticalImageCard[0];
 
-  const coverImageCards = newsData.filter(item => item.cardType === "coverImageCard").slice(0, 2);;
-  
-  const textOnlyCards = newsData.filter(item => item.cardType === "textOnlyCard").slice(0, 2);;
+  const coverImageCards = newsData.filter(item => item.cardType === "coverImageCard").slice(0, 2);
+  const textOnlyCards = newsData.filter(item => item.cardType === "textOnlyCard").slice(0, 2);
+  const sideImageCards = newsData.filter(item => item.cardType === "sideImageCard").slice(0, 4);
 
-  const sideImageCards = newsData.filter(item => item.cardType === "sideImageCard").slice(0, 4);;
+
+  const NationalNews = newsData.filter(item => item.category === "National");
+  const InternationalNews = newsData.filter(item => item.category === "International");
+  const SportsNews = newsData.filter(item => item.category === "Sports");
+  const TechnologyNews = newsData.filter(item => item.category === "Technology");
+
+  
 
 
   return (
@@ -113,6 +120,14 @@ export default function Home() {
         </div>
 
       </div>
+
+      <div>
+        <CategorySection sectionHeading={"National"} allNewsItems={NationalNews}/>
+        <CategorySection sectionHeading={"International"} allNewsItems={InternationalNews}/>
+        <CategorySection sectionHeading={"Sports"} allNewsItems={SportsNews}/>
+        <CategorySection sectionHeading={"Technology"} allNewsItems={TechnologyNews}/>
+      </div>
+      
       
     </div>
    </>
