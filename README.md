@@ -1,17 +1,75 @@
-# React + Vite
+#Project Setup: এই প্রোজেক্টটি তৈরি করতে নিম্নলিখিত প্রধান প্রযুক্তি এবং তাদের নির্দিষ্ট সংস্করণ ব্যবহার করা হয়েছে:
+React JS : ^19.2.0,
+React Router DOM:^7.11.0,
+Tailwind CSS: tailwindcss/vite: ^4.1.18
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## React Compiler
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## Expanding the ESLint configuration
+#Folder Structure:
+প্রোজেক্টের ফাইল কাঠামো সুসংগঠিতভাবে দুটি প্রধান বিভাগে বিভক্ত, যা ডেটা এবং সোর্স কোডকে আলাদা রাখে:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-# News-Prangan
+1. public/ (পাবলিক ফোল্ডার)
+এই ফোল্ডারের ফাইলগুলি সরাসরি সার্ভ করা হয় এবং এতে অ্যাপ্লিকেশনের ডেটা ও সম্পদ রয়েছে:
+
+data.json: এটি সম্পূর্ণ অ্যাপ্লিকেশনের জন্য প্রয়োজনীয় সমস্ত JSON ডেটা সংরক্ষণ করে।
+
+images/: এই ফোল্ডারে data.json ফাইলে উল্লেখিত বা রেফারেন্স করা ছবিগুলি সংরক্ষণ করা হয়েছে।
+
+2. src/ (সোর্স কোড)
+এই ফোল্ডারে React-এর সমস্ত প্রধান কোড এবং লজিক রয়েছে:
+
+assets/: এখানে প্রোজেক্টের কিছু প্রয়োজনীয় স্ট্যাটিক সম্পদ যেমন লোগো রাখা হয়েছে।
+
+components/: এটি অ্যাপ্লিকেশনের সমস্ত পুনর্ব্যবহারযোগ্য (reusable) UI কম্পোনেন্টগুলির সংগ্রহস্থল।
+
+layout/: এর মধ্যে Header, Footer, এবং Sidebar-এর মতো মূল কাঠামোগত কম্পোনেন্টগুলি রাখা হয়েছে।
+
+অন্যান্য ফাইলগুলি (CoverImageCard, TextOnlyCard, ইত্যাদি) বিভিন্ন ধরণের কার্ড এবং সেকশন তৈরির জন্য ব্যবহৃত হয়েছে।
+
+hooks/: এই ফোল্ডারে কাস্টম React Hooks গুলি রয়েছে।
+
+useHeaderScroll.jsx: এটি স্ক্রল ইভেন্ট এবং হেডারের দৃশ্যমানতা নিয়ন্ত্রণের জন্য তৈরি করা হয়েছে।
+
+pages/: প্রতিটি নির্দিষ্ট রুটের জন্য (যেমন, Home, Category, NewsDetails) মূল পেজ কম্পোনেন্টগুলি এখানে সংজ্ঞায়িত করা হয়েছে।
+
+
+src/
+├── assets/        
+├── components/   
+│   ├── layout/     
+│   │   ├── Footer.jsx
+│   │   ├── Header.jsx      
+│   │   └── Sidebar.jsx    
+│   ├── CategorySection.jsx 
+│   ├── CoverImageCard.jsx
+│   ├── PageTitle.jsx
+│   ├── ScrollToTop.jsx
+│   ├── SideImageCard.jsx   
+│   ├── TextOnlyCard.jsx    
+│   └── VerticalImageCard.jsx 
+├── hooks/          
+│   └── useHeaderScroll.jsx 
+├── pages/         
+│   ├── Category.jsx 
+│   ├── Home.jsx 
+│   ├── NewsDetails.jsx 
+│   
+
+
+
+#Key decisions I made:
+
+আমার এই সম্পূর্ণ ফ্রন্টএন্ড-কেন্দ্রিক প্রোজেক্টটি তৈরি করার সময় নিম্নলিখিত মূল সিদ্ধান্তগুলি নেওয়া হয়েছে:
+
+ডেটা ম্যানেজমেন্টে Local JSON ব্যবহার: যেহেতু প্রোজেক্টটি সম্পূর্ণরূপে ফ্রন্টএন্ড ফোকাসড, তাই আমি কোনো ডেটাবেস ব্যবহার না করে public/data.json ফাইলে সমস্ত অ্যাপ্লিকেশন ডেটা রাখার সিদ্ধান্ত নিয়েছি। এর ফলে প্রোজেক্টে সহজে ডেটা ফেচ করে ব্যবহার করতে পেরেছি।
+
+Data Fetching: অ্যাপ্লিকেশন ডেটা আনার জন্য সরাসরি ব্রাউজারের নিজস্ব fetch() API ব্যবহার করা হয়েছে, যা ডেটা লোডিংকে সহজ করেছে।
+
+উন্নত User Experience এর জন্য কাস্টম হুক: একটি ভালো ইউজার এক্সপেরিয়েন্স নিশ্চিত করতে আমি স্ক্রল ইভেন্টগুলির জন্য একটি কাস্টম হুক ব্যবহার করেছি। এটি নেভিগেশন বারকে স্ক্রলের সময় দৃশ্যমান ও অদৃশ্য করার লজিক পরিচালনা করে।
+
+Code Duplication হ্রাস এবং Organization: কোড ডুপ্লিকেশন কমানোর জন্য আমি রিইউজেবল কম্পোনেন্ট তৈরি করেছি। এর ফলে কোড স্ট্রাকচার অনেক বেশি গুছানো এবং মেইনটেইন করা সহজ হয়েছে।
+
+ডাইনামিক পেজ তৈরি: প্রোজেক্টের সমস্ত পেজকে স্ট্যাটিক না রেখে, ডেটা অনুযায়ী ডাইনামিক করা হয়েছে।

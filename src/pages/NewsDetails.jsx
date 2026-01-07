@@ -37,8 +37,8 @@ export default function NewsDetailsPage() {
           setError("News item not found.");
         }
       } catch (e) {
-        console.error("Could not fetch data:", e);
-        setError("Error fetching news item details.");
+        
+        setError("Could not fetch data:", e);
       } finally {
         setLoading(false);
       }
@@ -67,12 +67,10 @@ export default function NewsDetailsPage() {
   }
 
   if (newsItem) {
-    const subCategoryDisplay = Array.isArray(newsItem.subCategory)
-      ? newsItem.subCategory.join(' | ')
-      : newsItem.subCategory;
+    const subCategoryDisplay = newsItem.subCategory;
 
     return (
-      <div className="container mx-auto px-4 py-8 max-w-4xl">
+      <div className="container mx-auto px-4 md:mt-10 my-4 md:py-8 max-w-4xl">
 
         <div className="mb-6">
           <span className="text-sm font-semibold uppercase text-accent">
@@ -85,11 +83,11 @@ export default function NewsDetailsPage() {
           )}
         </div>
 
-        <h1 className="text-4xl md:text-5xl font-extrabold mb-4 leading-tight text-secondary">
+        <h1 className="text-2xl md:text-4xl font-extrabold mb-4 leading-tight text-secondary">
           {newsItem.title}
         </h1>
 
-        <p className="text-lg text-accent mb-6">
+        <p className="text-md text-accent mb-6">
           {newsItem.shortDescription}
         </p>
 
@@ -100,10 +98,10 @@ export default function NewsDetailsPage() {
         <img
           src={newsItem.image}
           alt={newsItem.title}
-          className="w-full h-auto object-cover rounded-lg shadow-md mb-8"
+          className="w-full h-auto object-cover shadow-md mb-8"
         />
 
-        <div className="text-secondary leading-relaxed text-base md:text-lg">
+        <div className="text-secondary leading-relaxed text-base md:text-md">
           {
             newsItem.fullDescription
           }
@@ -112,7 +110,7 @@ export default function NewsDetailsPage() {
         {relatedNews.length > 0 && (
           <div className="mt-12 pt-8 border-t border-accent/50">
             <h2 className="text-3xl font-bold mb-6 text-secondary border-b-2 border-accent pb-2">
-              Related News in {newsItem.category}
+              Related News 
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

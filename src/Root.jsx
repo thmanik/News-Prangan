@@ -5,7 +5,7 @@ import ScrollToTop from "./components/ScrollToTop";
 
 export default function Root() {
   return (
-    <div >
+    <div className="mx-auto">
 
       <Header />
       <ScrollToTop />

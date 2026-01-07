@@ -59,7 +59,7 @@ export default function CategoryPage() {
     }, [newsData, categoryName, subCategoryName]);
 
     const pageTitle = subCategoryName
-        ? `${subCategoryName} in ${categoryName}`
+        ? `${subCategoryName} - ${categoryName}`
         : categoryName;
 
 
@@ -89,8 +89,8 @@ export default function CategoryPage() {
     return (
         <>
             <PageTitle title={pageTitle} />
-            <div className="container mx-auto px-4 py-8 max-w-7xl">
-                <h1 className="text-xl md:text-2xl font-extrabold mb-8 text-secondary uppercase border-b-4 border-accent pb-2">
+            <div className="container mx-auto px-4 md:mt-15 max-w-7xl">
+                <h1 className="text-xl md:text-2xl font-bold mb-8 text-secondary uppercase border-b border-accent pb-2">
                     {pageTitle}
                 </h1>
 

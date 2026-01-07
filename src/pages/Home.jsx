@@ -76,7 +76,7 @@ export default function Home() {
   return (
     <>
       <PageTitle title="Home" />
-      <div className="container mx-auto px-4 py-4">
+      <div className="container mx-auto md:mt-8 px-4 py-2 md:py-4">
 
         <div className="grid grid-cols-12 gap-8">
 
