@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import SideImageCard from '../components/SideImageCard';
+import Loading from '../components/Loading';
 
 export default function NewsDetailsPage() {
   const { id } = useParams();
@@ -50,11 +51,7 @@ export default function NewsDetailsPage() {
   }, [id]);
 
   if (loading) {
-    return (
-      <div className="flex justify-center items-center h-96">
-        <p className="text-xl font-medium text-secondary">Loading news item...</p>
-      </div>
-    );
+    return <Loading/>
   }
 
   if (error) {

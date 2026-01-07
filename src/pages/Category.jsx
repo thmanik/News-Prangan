@@ -6,6 +6,7 @@ import SideImageCard from '../components/SideImageCard';
 import TextOnlyCard from '../components/TextOnlyCard';
 import PageTitle from '../components/PageTitle';
 import fileBox from "../../public/images/FileBoxIcon.png"
+import Loading from '../components/Loading';
 
 export default function CategoryPage() {
     const { categoryName, subCategoryName } = useParams();
@@ -64,11 +65,7 @@ export default function CategoryPage() {
 
 
     if (loading) {
-        return (
-            <div className="flex justify-center items-center h-48">
-                <p className="text-xl font-medium text-secondary">loading {pageTitle}...</p>
-            </div>
-        );
+        return<Loading/>
     }
 
     if (error) {

@@ -6,6 +6,7 @@ import TextOnlyCard from '../components/TextOnlyCard';
 import SideImageCard from '../components/SideImageCard';
 import PageTitle from '../components/PageTitle';
 import CategorySection from '../components/CategorySection';
+import Loading from '../components/Loading';
 
 
 export default function Home() {
@@ -41,11 +42,7 @@ export default function Home() {
 
 
   if (loading) {
-    return (
-      <div className="flex justify-center items-center h-48">
-        <p className="text-xl font-medium text-secondary">loading....</p>
-      </div>
-    );
+    return<Loading/>
   }
 
   if (error) {
