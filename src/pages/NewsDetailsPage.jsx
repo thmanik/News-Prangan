@@ -1,20 +1,18 @@
-
-
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-export default function ArticleDetails() {
+export default function NewsDetailsPage() {
   const { id } = useParams(); 
   
-  const [article, setArticle] = useState(null);
+  const [newsItem, setNewsItem] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const JSON_URL = '/data.json'; 
-   
+    
 
-    const fetchArticleData = async () => {
+    const fetchNewsItemData = async () => {
       setLoading(true);
       setError(null);
       
@@ -27,30 +25,30 @@ export default function ArticleDetails() {
         
         const data = await response.json();
         
-        const foundArticle = data.find(item => item.id === parseInt(id)); 
+        const foundNewsItem = data.find(item => item.id === parseInt(id)); 
 
-        if (foundArticle) {
-          setArticle(foundArticle);
+        if (foundNewsItem) {
+          setNewsItem(foundNewsItem);
         } else {
-          setError("Article not found.");
+          setError("News item not found.");
         }
       } catch (e) {
         console.error("Could not fetch data:", e);
-        setError("Error fetching article details.");
+        setError("Error fetching news item details.");
       } finally {
         setLoading(false); 
       }
     };
 
     if (id) {
-      fetchArticleData();
+      fetchNewsItemData();
     }
   }, [id]);
 
   if (loading) {
     return (
       <div className="flex justify-center items-center h-96">
-        <p className="text-xl font-medium text-secondary">Loading article...</p>
+        <p className="text-xl font-medium text-secondary">Loading news item...</p>
       </div>
     );
   }
@@ -64,17 +62,17 @@ export default function ArticleDetails() {
     );
   }
 
-  if (article) {
-    const subCategoryDisplay = Array.isArray(article.subCategory) 
-      ? article.subCategory.join(' | ') 
-      : article.subCategory;
+  if (newsItem) {
+    const subCategoryDisplay = Array.isArray(newsItem.subCategory) 
+      ? newsItem.subCategory.join(' | ') 
+      : newsItem.subCategory;
 
     return (
       <div className="container mx-auto px-4 py-8 max-w-4xl">
         
         <div className="mb-6">
           <span className="text-sm font-semibold uppercase text-accent">
-            {article.category}
+            {newsItem.category}
           </span>
           {subCategoryDisplay && (
             <span className="text-sm font-semibold text-accent ml-2">
@@ -84,27 +82,26 @@ export default function ArticleDetails() {
         </div>
 
         <h1 className="text-4xl md:text-5xl font-extrabold mb-4 leading-tight text-secondary">
-          {article.title}
+          {newsItem.title}
         </h1>
         
         <p className="text-lg text-accent mb-6">
-          {article.shortDescription}
+          {newsItem.shortDescription}
         </p>
 
         <div className="text-sm text-accent mb-6 pb-4 border-b border-accent/50">
-          Published Date: {article.publishedDate}
+          Published Date: {newsItem.publishedDate}
         </div>
 
         <img
-          src={article.image}
-          alt={article.title}
+          src={newsItem.image}
+          alt={newsItem.title}
           className="w-full h-auto object-cover rounded-lg shadow-md mb-8"
         />
         
         <div className="text-secondary leading-relaxed text-base md:text-lg">
           {
-           
-            article.fullDescription 
+            newsItem.fullDescription 
           }
         </div>
       </div>

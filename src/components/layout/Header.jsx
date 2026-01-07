@@ -3,14 +3,14 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Sidebar from './Sidebar';
 
-
 const SITE_LOGO_URL = "/images/logo.png"; 
+
 const navItems = [
   { name: "Home" },
-  { name: "National", subCategory: ["Politics", "Policy", "Education"] },
-  { name: "International", subCategory: ["Economy", "Politics", "Health"] },
+  { name: "National", subCategory: ["Government", "Economy", "Health"] },
+  { name: "International", subCategory: ["Commerce", "Humanitarian"] },
   { name: "Sports", subCategory: ["Cricket", "Football", "Olympics"] },
-  { name: "Technology", subCategory: ["AI", "Startups", "Gadgets"] },
+  { name: "Technology", subCategory: ["AI", "Gadgets"] },
 ];
 const Header = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -100,8 +100,7 @@ const Header = () => {
             </nav>
         </div>
       </header>
-      
-
+    
       <Sidebar 
         isOpen={isSidebarOpen} 
         toggleSidebar={toggleSidebar} 

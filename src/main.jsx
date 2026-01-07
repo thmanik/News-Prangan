@@ -8,6 +8,7 @@ import ErrorPage from "./Error";
 import Root from "./root";
 import Home from "./pages/Home";
 import NewsDetailsPage from "./pages/NewsDetailsPage";
+import CategoryPage from "./pages/CategoryPage";
 
 const router = createBrowserRouter([
   {
@@ -22,7 +23,15 @@ const router = createBrowserRouter([
       {
         path:"/newsDetails/:id",
         element:<NewsDetailsPage/>
-      }
+      },
+      {
+        path: "/:categoryName",
+        element: <CategoryPage />,
+      },
+      {
+        path: "/:categoryName/:subCategoryName",
+        element: <CategoryPage />,
+      },
     ],
   },
 ]);
