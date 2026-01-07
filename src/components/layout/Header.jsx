@@ -70,10 +70,10 @@ const Header = () => {
                     </div>
 
                     <div className="flex items-center space-x-4">
-                        <button className="bg-secondary text-primary px-4 py-2 text-sm font-semibold rounded hover:bg-accent transition-colors">
+                        <button className="bg-secondary cursor-pointer text-primary px-4 py-2 text-sm font-semibold rounded hover:bg-accent transition-colors">
                             Register
                         </button>
-                        <button className="text-sm font-semibold text-secondary hidden sm:block">
+                        <button className="text-sm cursor-pointer font-semibold text-secondary hidden sm:block">
                             Sign In
                         </button>
                     </div>
