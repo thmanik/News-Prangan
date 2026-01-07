@@ -61,7 +61,7 @@ const VerticalImageCard = ({ news }) => {
             Published: {news.publishedDate}
           </span>
           <div className="flex gap-2">
-            {Array.isArray(news.subCategory) ? news.subCategory.join(' | ') : news.subCategory}
+            {news.subCategory}
           </div>
         </div>
       </div>
