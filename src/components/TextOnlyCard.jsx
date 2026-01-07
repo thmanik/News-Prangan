@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -8,20 +7,25 @@ const TextOnlyCard = ({ news }) => {
   };
 
   return (
-    <article className="py-4 border-b border-accent bg-primary transition-colors duration-200">
+  
+    <Link 
+      to={getNewsPath(news)} 
+      className="block py-2 md:py-4 bg-primary transition-colors duration-500 group  focus:outline-none"
+    >
       <div className="p-0">
         
-        <Link to={getNewsPath(news)} className="block focus:outline-none group">
+      
+        <div> 
         
-          <h2 className="text-lg sm:text-xl md:text-lg font-bold leading-snug mb-2 text-secondary hover:underline transition-all">
+          <h2 className="sm:text-xl md:text-lg font-bold leading-snug mb-2 text-secondary group-hover:text-accent group-hover:underline transition-all">
             {news.title}
           </h2>
 
-         
-          <p className="text-accent text-sm sm:text-base md:text-sm mb-3 leading-relaxed">
+          
+          <p className="text-accent text-sm leading-relaxed mb-2">
             {news.shortDescription}
           </p>
-        </Link>
+        </div>
         
         <div className="flex items-center space-x-2">
           <span className="text-xs sm:text-sm font-medium text-accent">
@@ -29,12 +33,12 @@ const TextOnlyCard = ({ news }) => {
           </span>
           <span className="text-accent text-xs">|</span>
           <span className="text-xs sm:text-sm font-medium text-accent">
-          
+            
             {news.subCategory}
           </span>
         </div>
       </div>
-    </article>
+    </Link>
   );
 };
 

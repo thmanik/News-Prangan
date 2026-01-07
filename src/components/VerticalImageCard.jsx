@@ -50,10 +50,7 @@ const VerticalImageCard = ({ news }) => {
             </h2>
             
             <p 
-              className="mb-4 
-                        text-base xms:text-lg sm:text-xl 
-                        font-normal 
-                        text-accent
+              className="text-accent text-sm leading-relaxed mb-2
                         border-b border-accent/50 pb-4"
             >
               {news.shortDescription}

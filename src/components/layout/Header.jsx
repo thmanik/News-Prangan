@@ -1,6 +1,5 @@
-
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Sidebar from './Sidebar';
 
 const SITE_LOGO_URL = "/images/logo.png"; 
@@ -15,11 +14,23 @@ const navItems = [
 const Header = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [hoveredItem, setHoveredItem] = useState(null); 
+  const location = useLocation();
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
   
+  const isActive = (itemName) => {
+    const currentPathSegment = location.pathname.split('/')[1]; 
+    
+    if (itemName === 'Home') {
+      return location.pathname === '/';
+    }
+    
+    return currentPathSegment === itemName.toLowerCase();
+  };
+
+
   return (
     <>
       <header className="sticky top-0 bg-primary z-30 border-b border-accent">
@@ -68,7 +79,7 @@ const Header = () => {
                             <Link 
                                 to={`/${item.name === 'Home' ? '' : item.name.toLowerCase()}`} 
                                 className={`block py-3 text-sm font-semibold text-secondary hover:text-accent transition-colors 
-                                    ${item.name === 'Home' || hoveredItem === item.name ? 'border-b-2 border-accent text-accent' : ''}`}
+                                    ${(isActive(item.name) || hoveredItem === item.name) ? 'border-b-2 border-accent text-accent' : ''}`}
                             >
                                 {item.name}
                             </Link>
@@ -84,7 +95,6 @@ const Header = () => {
                                                 <Link 
                                                     to={`/${item.name.toLowerCase()}/${sub.toLowerCase()}`}
                                                     className="block px-4 py-2 text-sm text-secondary hover:bg-gray-100 hover:text-accent transition-colors"
-
                                                     onClick={() => setHoveredItem(null)} 
                                                 >
                                                     {sub}

@@ -4,6 +4,7 @@ import VerticalImageCard from '../components/VerticalImageCard';
 import CoverImageCard from '../components/CoverImageCard';
 import TextOnlyCard from '../components/TextOnlyCard';
 import SideImageCard from '../components/SideImageCard';
+import PageTitle from '../components/PageTitle';
 
 
 export default function Home() {
@@ -55,17 +56,19 @@ export default function Home() {
     );
   }
 
-  const verticalImageArticles = newsData.filter(item => item.cardType === "verticalImageCard");
-  const firstVerticalImageCard = verticalImageArticles[0];
+  const verticalImageCard = newsData.filter(item => item.cardType === "verticalImageCard");
+  const firstVerticalImageCard = verticalImageCard[0];
 
-  const coverImageCards = newsData.filter(item => item.cardType === "coverImageCard");
+  const coverImageCards = newsData.filter(item => item.cardType === "coverImageCard").slice(0, 2);;
   
-  const textOnlyCards = newsData.filter(item => item.cardType === "textOnlyCard");
+  const textOnlyCards = newsData.filter(item => item.cardType === "textOnlyCard").slice(0, 2);;
 
-  const sideImageCards = newsData.filter(item => item.cardType === "sideImageCard");
+  const sideImageCards = newsData.filter(item => item.cardType === "sideImageCard").slice(0, 4);;
 
 
   return (
+   <>
+   <PageTitle title="Home" />
     <div className="container mx-auto px-4 py-4">
       
       <div className="grid grid-cols-12 gap-8">
@@ -89,13 +92,13 @@ export default function Home() {
                 </div>
             )}
             
-            <div className="divide-y divide-accent">
-                {
-                    textOnlyCards.map(item => (
-                        <TextOnlyCard key={item.id} news={item} />
-                    ))
-                }
-            </div>
+           <div className="space-y-4 divide-y divide-accent">
+    {
+        textOnlyCards.map(item => (
+            <TextOnlyCard key={item.id} news={item} />
+        ))
+    }
+</div>
         </div>
         
         <div className="col-span-12 md:col-span-3">
@@ -112,5 +115,6 @@ export default function Home() {
       </div>
       
     </div>
+   </>
   );
 }

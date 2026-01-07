@@ -4,7 +4,8 @@ import { useParams, Link } from 'react-router-dom';
 import VerticalImageCard from '../components/VerticalImageCard';
 import SideImageCard from '../components/SideImageCard';
 import TextOnlyCard from '../components/TextOnlyCard';
-
+import PageTitle from '../components/PageTitle';
+import fileBox from "../../public/images/FileBoxIcon.png"
 
 export default function CategoryPage() {
   const { categoryName, subCategoryName } = useParams(); 
@@ -93,6 +94,8 @@ export default function CategoryPage() {
 
 
   return (
+    <>
+    <PageTitle title={pageTitle} />
     <div className="container mx-auto px-4 py-8 max-w-7xl">
       <h1 className="text-4xl font-extrabold mb-8 text-secondary uppercase border-b-4 border-accent pb-2">
         {pageTitle}
@@ -118,34 +121,28 @@ export default function CategoryPage() {
       </div>
  
       <div className="mt-8">
-          <h2 className="text-3xl font-bold mb-6 text-secondary border-b-2 border-accent pb-2">Latest Articles</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {remainingArticles.map(item => {
-                  switch (item.cardType) {
-                      case 'textOnlyCard':
-                          return (
-                            <div key={item.id} className="col-span-1 border p-4">
-                                <TextOnlyCard news={item} />
-                            </div>
-                          );
-                      case 'coverImageCard':
-                          return (
-                            <div key={item.id} className="col-span-1">
-                                <VerticalImageCard news={item} /> 
-                            </div>
-                          );
-                      case 'sideImageCard':
-                      case 'verticalImageCard':
-                      default:
-                          return (
-                            <div key={item.id} className="col-span-1 border p-4">
-                                <SideImageCard news={item} />
-                            </div>
-                          );
-                  }
-              })}
-          </div>
-      </div>
+  <h2 className="text-3xl font-bold mb-6 text-secondary border-b-2 border-accent pb-2">Latest News</h2>
+  
+  {remainingArticles.length > 0 ? (
+    
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {remainingArticles.map(item => (
+        <div key={item.id} className="col-span-1">
+          <SideImageCard news={item} />
+        </div>
+      ))}
     </div>
+
+  ) : (
+    
+    <div className="p-10 bg-gray-50/10 border border-dashed border-accent/50 rounded-lg text-center my-10">
+      <p className="text-xl font-semibold text-secondary mb-2">No Latest news Available Yet.</p>
+      <p className="text-accent">Please check back later for more updates.</p>
+      <img className="w-10 h-10  mx-auto mt-4 opacity-50" src={fileBox} alt="" />
+    </div>
+  )}
+</div>
+    </div>
+    </>
   );
 }

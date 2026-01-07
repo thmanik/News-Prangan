@@ -22,13 +22,13 @@ const CoverImageCard = ({ news }) => {
           />
         </div>
 
-        <div className="p-4 md:p-5">
+        <div className="p-2">
           
-          <h2 className="text-xl sm:text-2xl font-extrabold leading-tight mb-2 text-secondary group-hover:underline transition-colors">
+          <h2 className="text-md sm:text-md  font-bold leading-tight mb-2 text-secondary group-hover:underline transition-colors">
             {news.title}
           </h2>
 
-          <p className="text-accent text-sm sm:text-base mb-3 leading-relaxed">
+          <p className="text-accent text-sm leading-relaxed mb-2">
             {news.shortDescription}
           </p>
 
